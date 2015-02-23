@@ -1,6 +1,7 @@
 
 # AllTargets
   AllTargets is a plugin for Xcode. The plugin intends to auto select all targets when you add files to the project.
+
  ![image](https://github.com/poboke/AllTargets/raw/master/Images/about.png)
 
 ## Support Xcode Versions
@@ -19,6 +20,7 @@ Delete the following directory:
 
 ## Tutorial
   See the tutorial in my blog.
+
   http://www.poboke.com/study/write-a-xcode-plugin-to-auto-select-all-targets.html
 
 ## License
