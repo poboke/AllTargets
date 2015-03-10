@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C5C02E2E1A73971C00D4CF7C /* AllTargets.xcscheme in Resources */ = {isa = PBXBuildFile; fileRef = C5C02E2D1A73971C00D4CF7C /* AllTargets.xcscheme */; };
 		C5C02E311A73971C00D4CF7C /* AllTargets.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C02E301A73971C00D4CF7C /* AllTargets.m */; };
 		C5D702301A77CF7E00FC7172 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5D700A51A77CF7B00FC7172 /* AppKit.framework */; };
 		C5D702601A77CF7E00FC7172 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5D700D51A77CF7B00FC7172 /* Foundation.framework */; };
@@ -16,7 +15,6 @@
 /* Begin PBXFileReference section */
 		C5C02E231A73971C00D4CF7C /* AllTargets.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AllTargets.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5C02E2C1A73971C00D4CF7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C5C02E2D1A73971C00D4CF7C /* AllTargets.xcscheme */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = AllTargets.xcscheme; path = AllTargets.xcodeproj/xcshareddata/xcschemes/AllTargets.xcscheme; sourceTree = SOURCE_ROOT; };
 		C5C02E2F1A73971C00D4CF7C /* AllTargets.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AllTargets.h; sourceTree = "<group>"; };
 		C5C02E301A73971C00D4CF7C /* AllTargets.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AllTargets.m; sourceTree = "<group>"; };
 		C5D700A51A77CF7B00FC7172 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -76,7 +74,6 @@
 			isa = PBXGroup;
 			children = (
 				C5C02E2C1A73971C00D4CF7C /* Info.plist */,
-				C5C02E2D1A73971C00D4CF7C /* AllTargets.xcscheme */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -137,7 +134,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C5C02E2E1A73971C00D4CF7C /* AllTargets.xcscheme in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
