@@ -7,7 +7,7 @@
 //
 
 #import "AllTargets.h"
-#include <objc/runtime.h>
+#import "Xcode3TargetMembershipDataSource+Hook.h"
 
 static AllTargets *sharedPlugin;
 
@@ -17,7 +17,6 @@ static AllTargets *sharedPlugin;
 
 @end
 
-static IMP originalImp = NULL;
 
 @implementation AllTargets
 
@@ -42,12 +41,13 @@ static IMP originalImp = NULL;
 - (id)initWithBundle:(NSBundle *)plugin
 {
     if (self = [super init]) {
+        
         // Reference to plugin's bundle, for resource access
         self.bundle = plugin;
         
-        [self addPluginsMenu];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addPluginsMenu) name:NSMenuDidChangeItemNotification object:nil];
         
-        [self hookMethod];
+        [Xcode3TargetMembershipDataSource hook];
     }
     
     return self;
@@ -56,8 +56,12 @@ static IMP originalImp = NULL;
 
 - (void)addPluginsMenu
 {
-    // Add Plugins menu next to Window menu
     NSMenu *mainMenu = [NSApp mainMenu];
+    if (!mainMenu) {
+        return;
+    }
+    
+    // Add Plugins menu next to Window menu
     NSMenuItem *pluginsMenuItem = [mainMenu itemWithTitle:@"Plugins"];
     if (!pluginsMenuItem) {
         pluginsMenuItem = [[NSMenuItem alloc] init];
@@ -68,46 +72,21 @@ static IMP originalImp = NULL;
     }
     
     // Add Subitem
-    NSMenuItem *subItem = [[NSMenuItem alloc] init];
-    subItem.title = @"Auto Select All Targets";
-    subItem.target = self;
-    subItem.action = @selector(toggleMenu:);
-    subItem.state = NSOnState;
-    [pluginsMenuItem.submenu addItem:subItem];
+    NSMenuItem *subMenuItem = [[NSMenuItem alloc] init];
+    subMenuItem.title = @"Auto Select All Targets";
+    subMenuItem.target = self;
+    subMenuItem.action = @selector(toggleMenu:);
+    subMenuItem.state = NSOnState;
+    [pluginsMenuItem.submenu addItem:subMenuItem];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSMenuDidChangeItemNotification object:nil];
 }
 
 
 - (void)toggleMenu:(NSMenuItem *)menuItem
 {
     menuItem.state = !menuItem.state;
-    [self hookMethod];
-}
-
-
-- (void)hookMethod
-{
-    SEL method = @selector(updateTargets);
-    
-    Class originalClass = NSClassFromString(@"Xcode3TargetMembershipDataSource");
-    Method originalMethod = class_getInstanceMethod(originalClass, method);
-    originalImp = method_getImplementation(originalMethod);
-    
-    Class replacedClass = self.class;
-    Method replacedMethod = class_getInstanceMethod(replacedClass, method);
-    method_exchangeImplementations(originalMethod, replacedMethod);
-}
-
-
-- (void)updateTargets
-{
-    // We first call the original method
-    originalImp();
-    
-    // Run our custom code
-    NSMutableArray *wrappedTargets = [self valueForKey:@"wrappedTargets"];
-    for (id wrappedTarget in wrappedTargets) {
-        [wrappedTarget setValue:@YES forKey:@"selected"];
-    }
+    [Xcode3TargetMembershipDataSource hook];
 }
 
 

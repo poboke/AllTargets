@@ -7,12 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C5479A8C1B36FAAD007B58C2 /* Xcode3UI in Frameworks */ = {isa = PBXBuildFile; fileRef = C5479A8B1B36FAAD007B58C2 /* Xcode3UI */; };
+		C5482A7F1B37023B00B41B97 /* Xcode3TargetMembershipDataSource+Hook.m in Sources */ = {isa = PBXBuildFile; fileRef = C5482A7E1B37023B00B41B97 /* Xcode3TargetMembershipDataSource+Hook.m */; };
+		C560DD4C1B36B9BF0066EE9A /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = C560DD4B1B36B9BF0066EE9A /* JRSwizzle.m */; };
 		C5C02E311A73971C00D4CF7C /* AllTargets.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C02E301A73971C00D4CF7C /* AllTargets.m */; };
 		C5D702301A77CF7E00FC7172 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5D700A51A77CF7B00FC7172 /* AppKit.framework */; };
 		C5D702601A77CF7E00FC7172 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5D700D51A77CF7B00FC7172 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C5479A8B1B36FAAD007B58C2 /* Xcode3UI */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = Xcode3UI; path = ../../../../../Applications/Xcode.app/Contents/PlugIns/Xcode3UI.ideplugin/Contents/MacOS/Xcode3UI; sourceTree = "<group>"; };
+		C5482A7A1B3701BF00B41B97 /* Xcode3TargetMembershipDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Xcode3TargetMembershipDataSource.h; sourceTree = "<group>"; };
+		C5482A7D1B37023B00B41B97 /* Xcode3TargetMembershipDataSource+Hook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Xcode3TargetMembershipDataSource+Hook.h"; sourceTree = "<group>"; };
+		C5482A7E1B37023B00B41B97 /* Xcode3TargetMembershipDataSource+Hook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Xcode3TargetMembershipDataSource+Hook.m"; sourceTree = "<group>"; };
+		C54A8B491B36B70600BBDE7E /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		C560DD4A1B36B9BF0066EE9A /* JRSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSwizzle.h; sourceTree = "<group>"; };
+		C560DD4B1B36B9BF0066EE9A /* JRSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSwizzle.m; sourceTree = "<group>"; };
 		C5C02E231A73971C00D4CF7C /* AllTargets.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AllTargets.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5C02E2C1A73971C00D4CF7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5C02E2F1A73971C00D4CF7C /* AllTargets.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AllTargets.h; sourceTree = "<group>"; };
@@ -26,6 +36,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5479A8C1B36FAAD007B58C2 /* Xcode3UI in Frameworks */,
 				C5D702301A77CF7E00FC7172 /* AppKit.framework in Frameworks */,
 				C5D702601A77CF7E00FC7172 /* Foundation.framework in Frameworks */,
 			);
@@ -34,6 +45,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C5479A851B36FA46007B58C2 /* Other Framewotks */ = {
+			isa = PBXGroup;
+			children = (
+				C5D700A51A77CF7B00FC7172 /* AppKit.framework */,
+				C5D700D51A77CF7B00FC7172 /* Foundation.framework */,
+			);
+			name = "Other Framewotks";
+			sourceTree = "<group>";
+		};
+		C5482A791B3701BF00B41B97 /* XcodeHeaders */ = {
+			isa = PBXGroup;
+			children = (
+				C5482A7A1B3701BF00B41B97 /* Xcode3TargetMembershipDataSource.h */,
+			);
+			path = XcodeHeaders;
+			sourceTree = "<group>";
+		};
+		C5482A7C1B37023B00B41B97 /* HookClasses */ = {
+			isa = PBXGroup;
+			children = (
+				C5482A7D1B37023B00B41B97 /* Xcode3TargetMembershipDataSource+Hook.h */,
+				C5482A7E1B37023B00B41B97 /* Xcode3TargetMembershipDataSource+Hook.m */,
+			);
+			path = HookClasses;
+			sourceTree = "<group>";
+		};
+		C560DD491B36B9BF0066EE9A /* JRSwizzle */ = {
+			isa = PBXGroup;
+			children = (
+				C560DD4A1B36B9BF0066EE9A /* JRSwizzle.h */,
+				C560DD4B1B36B9BF0066EE9A /* JRSwizzle.m */,
+			);
+			path = JRSwizzle;
+			sourceTree = "<group>";
+		};
 		C5C02E1A1A73971C00D4CF7C = {
 			isa = PBXGroup;
 			children = (
@@ -54,8 +100,8 @@
 		C5C02E251A73971C00D4CF7C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C5D700A51A77CF7B00FC7172 /* AppKit.framework */,
-				C5D700D51A77CF7B00FC7172 /* Foundation.framework */,
+				C5479A8B1B36FAAD007B58C2 /* Xcode3UI */,
+				C5479A851B36FA46007B58C2 /* Other Framewotks */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -65,6 +111,9 @@
 			children = (
 				C5C02E2F1A73971C00D4CF7C /* AllTargets.h */,
 				C5C02E301A73971C00D4CF7C /* AllTargets.m */,
+				C5482A7C1B37023B00B41B97 /* HookClasses */,
+				C5482A791B3701BF00B41B97 /* XcodeHeaders */,
+				C560DD491B36B9BF0066EE9A /* JRSwizzle */,
 				C5C02E2B1A73971C00D4CF7C /* Supporting Files */,
 			);
 			path = AllTargets;
@@ -74,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				C5C02E2C1A73971C00D4CF7C /* Info.plist */,
+				C54A8B491B36B70600BBDE7E /* PrefixHeader.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -145,6 +195,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5C02E311A73971C00D4CF7C /* AllTargets.m in Sources */,
+				C560DD4C1B36B9BF0066EE9A /* JRSwizzle.m in Sources */,
+				C5482A7F1B37023B00B41B97 /* Xcode3TargetMembershipDataSource+Hook.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,6 +225,8 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(PRODUCT_NAME)/PrefixHeader.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -210,6 +264,8 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(PRODUCT_NAME)/PrefixHeader.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -239,6 +295,9 @@
 					"$(SDKROOT)/usr/lib/dtrace",
 					"$(SDKROOT)/usr/lib/python2.6/config",
 					"$(SDKROOT)/usr/lib/python2.7/config",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/AllTargets",
+					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/PlugIns/Xcode3UI.ideplugin/Contents/MacOS",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				ONLY_ACTIVE_ARCH = YES;
@@ -266,6 +325,9 @@
 					"$(SDKROOT)/usr/lib/dtrace",
 					"$(SDKROOT)/usr/lib/python2.6/config",
 					"$(SDKROOT)/usr/lib/python2.7/config",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/AllTargets",
+					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/PlugIns/Xcode3UI.ideplugin/Contents/MacOS",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
