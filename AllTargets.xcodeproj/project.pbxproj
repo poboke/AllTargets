@@ -16,7 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		C5479A8B1B36FAAD007B58C2 /* Xcode3UI */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = Xcode3UI; path = ../../../../../Applications/Xcode.app/Contents/PlugIns/Xcode3UI.ideplugin/Contents/MacOS/Xcode3UI; sourceTree = "<group>"; };
+		C5479A8B1B36FAAD007B58C2 /* Xcode3UI */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = Xcode3UI; path = /Applications/Xcode.app/Contents/PlugIns/Xcode3UI.ideplugin/Contents/MacOS/Xcode3UI; sourceTree = "<group>"; };
 		C5482A7A1B3701BF00B41B97 /* Xcode3TargetMembershipDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Xcode3TargetMembershipDataSource.h; sourceTree = "<group>"; };
 		C5482A7D1B37023B00B41B97 /* Xcode3TargetMembershipDataSource+Hook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Xcode3TargetMembershipDataSource+Hook.h"; sourceTree = "<group>"; };
 		C5482A7E1B37023B00B41B97 /* Xcode3TargetMembershipDataSource+Hook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Xcode3TargetMembershipDataSource+Hook.m"; sourceTree = "<group>"; };
