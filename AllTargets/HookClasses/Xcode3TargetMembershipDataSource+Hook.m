@@ -7,6 +7,7 @@
 //
 
 #import "Xcode3TargetMembershipDataSource+Hook.h"
+#import "Xcode3TargetWrapper.h"
 
 @implementation Xcode3TargetMembershipDataSource (Hook)
 
@@ -23,8 +24,8 @@
     
     // Run our custom code
     NSMutableArray *wrappedTargets = [self valueForKey:@"wrappedTargets"];
-    for (id wrappedTarget in wrappedTargets) {
-        [wrappedTarget setValue:@YES forKey:@"selected"];
+    for (Xcode3TargetWrapper *wrappedTarget in wrappedTargets) {
+        wrappedTarget.selected = YES;
     }
 }
 

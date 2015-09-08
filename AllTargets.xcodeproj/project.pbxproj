@@ -23,6 +23,7 @@
 		C54A8B491B36B70600BBDE7E /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		C560DD4A1B36B9BF0066EE9A /* JRSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSwizzle.h; sourceTree = "<group>"; };
 		C560DD4B1B36B9BF0066EE9A /* JRSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSwizzle.m; sourceTree = "<group>"; };
+		C58506951B9EDCDB00071B27 /* Xcode3TargetWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Xcode3TargetWrapper.h; sourceTree = "<group>"; };
 		C5C02E231A73971C00D4CF7C /* AllTargets.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AllTargets.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5C02E2C1A73971C00D4CF7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5C02E2F1A73971C00D4CF7C /* AllTargets.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AllTargets.h; sourceTree = "<group>"; };
@@ -57,6 +58,7 @@
 		C5482A791B3701BF00B41B97 /* XcodeHeaders */ = {
 			isa = PBXGroup;
 			children = (
+				C58506951B9EDCDB00071B27 /* Xcode3TargetWrapper.h */,
 				C5482A7A1B3701BF00B41B97 /* Xcode3TargetMembershipDataSource.h */,
 			);
 			path = XcodeHeaders;
