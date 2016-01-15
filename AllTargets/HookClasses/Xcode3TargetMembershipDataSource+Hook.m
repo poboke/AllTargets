@@ -24,7 +24,20 @@
     
     // Run our custom code
     NSMutableArray *wrappedTargets = [self valueForKey:@"wrappedTargets"];
+    NSArray *ignoreSuffixes = @[ @"Test", @"Tests", @"Spec", @"Specs" ];
     for (Xcode3TargetWrapper *wrappedTarget in wrappedTargets) {
+        BOOL __block ignoreTarget = NO;
+        [ignoreSuffixes enumerateObjectsUsingBlock:^(NSString * _Nonnull suffix, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([wrappedTarget.name hasSuffix:suffix]) {
+                ignoreTarget = YES;
+            }
+            *stop = ignoreTarget;
+        }];
+        
+        if (ignoreTarget) {
+            continue;
+        }
+        
         wrappedTarget.selected = YES;
     }
 }
