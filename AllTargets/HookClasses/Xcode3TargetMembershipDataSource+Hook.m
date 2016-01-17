@@ -11,21 +11,32 @@
 
 @implementation Xcode3TargetMembershipDataSource (Hook)
 
-+ (void)hook
++ (void)hookAllTargets
 {
-    [self jr_swizzleMethod:@selector(updateTargets) withMethod:@selector(updateTargetsHook) error:nil];
+    [self jr_swizzleMethod:@selector(updateTargets)
+                withMethod:@selector(allTargets_updateTargets)
+                     error:nil];
 }
 
 
-- (void)updateTargetsHook
+- (void)allTargets_updateTargets
 {
     // We first call the original method
-    [self updateTargetsHook];
+    [self allTargets_updateTargets];
     
     // Run our custom code
     NSMutableArray *wrappedTargets = [self valueForKey:@"wrappedTargets"];
-    for (Xcode3TargetWrapper *wrappedTarget in wrappedTargets) {
-        wrappedTarget.selected = YES;
+    
+    for (Xcode3TargetWrapper *targetWrapper in wrappedTargets) {
+        
+        // Don't select the test targets
+        id pbxTarget = targetWrapper.pbxTarget;
+        id productType = [pbxTarget valueForKey:@"productType"];
+        if ([productType isMemberOfClass:NSClassFromString(@"PBXXCTestBundleProductType")]) {
+            continue;
+        }
+        
+        targetWrapper.selected = YES;
     }
 }
 

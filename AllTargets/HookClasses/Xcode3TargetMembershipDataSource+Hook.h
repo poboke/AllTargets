@@ -10,6 +10,6 @@
 
 @interface Xcode3TargetMembershipDataSource (Hook)
 
-+ (void)hook;
++ (void)hookAllTargets;
 
 @end

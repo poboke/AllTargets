@@ -47,7 +47,7 @@ static AllTargets *sharedPlugin;
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addPluginsMenu) name:NSMenuDidChangeItemNotification object:nil];
         
-        [Xcode3TargetMembershipDataSource hook];
+        [Xcode3TargetMembershipDataSource hookAllTargets];
     }
     
     return self;
@@ -86,7 +86,7 @@ static AllTargets *sharedPlugin;
 - (void)toggleMenu:(NSMenuItem *)menuItem
 {
     menuItem.state = !menuItem.state;
-    [Xcode3TargetMembershipDataSource hook];
+    [Xcode3TargetMembershipDataSource hookAllTargets];
 }
 
 
