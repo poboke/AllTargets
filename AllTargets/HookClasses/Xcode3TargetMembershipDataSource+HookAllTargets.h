@@ -1,5 +1,5 @@
 //
-//  Xcode3TargetMembershipDataSource+Hook.h
+//  Xcode3TargetMembershipDataSource+HookAllTargets.h
 //  AllTargets
 //
 //  Created by Jobs on 15/6/21.
@@ -8,7 +8,7 @@
 
 #import "Xcode3TargetMembershipDataSource.h"
 
-@interface Xcode3TargetMembershipDataSource (Hook)
+@interface Xcode3TargetMembershipDataSource (HookAllTargets)
 
 + (void)hookAllTargets;
 
