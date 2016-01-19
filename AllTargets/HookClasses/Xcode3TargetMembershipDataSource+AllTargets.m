@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 Jobs. All rights reserved.
 //
 
-#import "Xcode3TargetMembershipDataSource+Hook.h"
+#import "Xcode3TargetMembershipDataSource+AllTargets.h"
 #import "Xcode3TargetWrapper.h"
 
 @implementation Xcode3TargetMembershipDataSource (Hook)

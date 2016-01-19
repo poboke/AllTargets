@@ -7,7 +7,7 @@
 //
 
 #import "AllTargets.h"
-#import "Xcode3TargetMembershipDataSource+Hook.h"
+#import "Xcode3TargetMembershipDataSource+AllTargets.h"
 
 static AllTargets *sharedPlugin;
 

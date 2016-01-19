@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		C5479A8C1B36FAAD007B58C2 /* Xcode3UI in Frameworks */ = {isa = PBXBuildFile; fileRef = C5479A8B1B36FAAD007B58C2 /* Xcode3UI */; };
-		C5482A7F1B37023B00B41B97 /* Xcode3TargetMembershipDataSource+Hook.m in Sources */ = {isa = PBXBuildFile; fileRef = C5482A7E1B37023B00B41B97 /* Xcode3TargetMembershipDataSource+Hook.m */; };
 		C560DD4C1B36B9BF0066EE9A /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = C560DD4B1B36B9BF0066EE9A /* JRSwizzle.m */; };
+		C564DB6B1C4DFAE900CF61FA /* Xcode3TargetMembershipDataSource+AllTargets.m in Sources */ = {isa = PBXBuildFile; fileRef = C564DB6A1C4DFAE900CF61FA /* Xcode3TargetMembershipDataSource+AllTargets.m */; };
 		C5C02E311A73971C00D4CF7C /* AllTargets.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C02E301A73971C00D4CF7C /* AllTargets.m */; };
 		C5D702301A77CF7E00FC7172 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5D700A51A77CF7B00FC7172 /* AppKit.framework */; };
 		C5D702601A77CF7E00FC7172 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5D700D51A77CF7B00FC7172 /* Foundation.framework */; };
@@ -18,11 +18,11 @@
 /* Begin PBXFileReference section */
 		C5479A8B1B36FAAD007B58C2 /* Xcode3UI */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = Xcode3UI; path = /Applications/Xcode.app/Contents/PlugIns/Xcode3UI.ideplugin/Contents/MacOS/Xcode3UI; sourceTree = "<group>"; };
 		C5482A7A1B3701BF00B41B97 /* Xcode3TargetMembershipDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Xcode3TargetMembershipDataSource.h; sourceTree = "<group>"; };
-		C5482A7D1B37023B00B41B97 /* Xcode3TargetMembershipDataSource+Hook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Xcode3TargetMembershipDataSource+Hook.h"; sourceTree = "<group>"; };
-		C5482A7E1B37023B00B41B97 /* Xcode3TargetMembershipDataSource+Hook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Xcode3TargetMembershipDataSource+Hook.m"; sourceTree = "<group>"; };
 		C54A8B491B36B70600BBDE7E /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		C560DD4A1B36B9BF0066EE9A /* JRSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSwizzle.h; sourceTree = "<group>"; };
 		C560DD4B1B36B9BF0066EE9A /* JRSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSwizzle.m; sourceTree = "<group>"; };
+		C564DB691C4DFAE900CF61FA /* Xcode3TargetMembershipDataSource+AllTargets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Xcode3TargetMembershipDataSource+AllTargets.h"; sourceTree = "<group>"; };
+		C564DB6A1C4DFAE900CF61FA /* Xcode3TargetMembershipDataSource+AllTargets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Xcode3TargetMembershipDataSource+AllTargets.m"; sourceTree = "<group>"; };
 		C58506951B9EDCDB00071B27 /* Xcode3TargetWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Xcode3TargetWrapper.h; sourceTree = "<group>"; };
 		C5C02E231A73971C00D4CF7C /* AllTargets.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AllTargets.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5C02E2C1A73971C00D4CF7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -67,8 +67,8 @@
 		C5482A7C1B37023B00B41B97 /* HookClasses */ = {
 			isa = PBXGroup;
 			children = (
-				C5482A7D1B37023B00B41B97 /* Xcode3TargetMembershipDataSource+Hook.h */,
-				C5482A7E1B37023B00B41B97 /* Xcode3TargetMembershipDataSource+Hook.m */,
+				C564DB691C4DFAE900CF61FA /* Xcode3TargetMembershipDataSource+AllTargets.h */,
+				C564DB6A1C4DFAE900CF61FA /* Xcode3TargetMembershipDataSource+AllTargets.m */,
 			);
 			path = HookClasses;
 			sourceTree = "<group>";
@@ -198,7 +198,7 @@
 			files = (
 				C5C02E311A73971C00D4CF7C /* AllTargets.m in Sources */,
 				C560DD4C1B36B9BF0066EE9A /* JRSwizzle.m in Sources */,
-				C5482A7F1B37023B00B41B97 /* Xcode3TargetMembershipDataSource+Hook.m in Sources */,
+				C564DB6B1C4DFAE900CF61FA /* Xcode3TargetMembershipDataSource+AllTargets.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
