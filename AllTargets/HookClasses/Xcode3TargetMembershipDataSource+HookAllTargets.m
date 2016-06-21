@@ -15,7 +15,7 @@
 {
     [self jr_swizzleMethod:@selector(updateTargets)
                 withMethod:@selector(allTargets_updateTargets)
-                     error:nil];
+                     error:NULL];
 }
 
 
