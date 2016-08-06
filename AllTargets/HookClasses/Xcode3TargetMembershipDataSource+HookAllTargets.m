@@ -9,6 +9,10 @@
 #import "Xcode3TargetMembershipDataSource+HookAllTargets.h"
 #import "Xcode3TargetWrapper.h"
 
+static NSString * const WrappedTargetsKey = @"wrappedTargets";
+static NSString * const ProductTypeKey = @"productType";
+static NSString * const TestBundleKey = @"PBXXCTestBundleProductType";
+
 @implementation Xcode3TargetMembershipDataSource (HookAllTargets)
 
 + (void)hookAllTargets
@@ -18,21 +22,20 @@
                      error:NULL];
 }
 
-
 - (void)allTargets_updateTargets
 {
     // We first call the original method
     [self allTargets_updateTargets];
     
     // Run our custom code
-    NSMutableArray *wrappedTargets = [self valueForKey:@"wrappedTargets"];
+    NSMutableArray *wrappedTargets = [self valueForKey:WrappedTargetsKey];
     
     for (Xcode3TargetWrapper *targetWrapper in wrappedTargets) {
         
         // Don't select the test targets
         id pbxTarget = targetWrapper.pbxTarget;
-        id productType = [pbxTarget valueForKey:@"productType"];
-        if ([productType isMemberOfClass:NSClassFromString(@"PBXXCTestBundleProductType")]) {
+        id productType = [pbxTarget valueForKey:ProductTypeKey];
+        if ([productType isMemberOfClass:NSClassFromString(TestBundleKey)]) {
             continue;
         }
         

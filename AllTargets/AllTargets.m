@@ -9,6 +9,11 @@
 #import "AllTargets.h"
 #import "Xcode3TargetMembershipDataSource+HookAllTargets.h"
 
+static NSString * const BundleNameKey = @"CFBundleName";
+static NSString * const XcodeKey = @"Xcode";
+static NSString * const PluginsKey = @"Plugins";
+static NSString * const WindowsKey = @"Window";
+
 static AllTargets *sharedPlugin;
 
 @interface AllTargets() <NSTableViewDelegate>
@@ -17,44 +22,40 @@ static AllTargets *sharedPlugin;
 
 @end
 
-
 @implementation AllTargets
 
 + (void)pluginDidLoad:(NSBundle *)plugin
 {
     static dispatch_once_t onceToken;
-    NSString *currentApplicationName = [[NSBundle mainBundle] infoDictionary][@"CFBundleName"];
-    if ([currentApplicationName isEqual:@"Xcode"]) {
+    NSString *currentApplicationName = [[NSBundle mainBundle] infoDictionary][BundleNameKey];
+    if ([currentApplicationName isEqualToString:XcodeKey]) {
         dispatch_once(&onceToken, ^{
             sharedPlugin = [[self alloc] initWithBundle:plugin];
         });
     }
 }
 
-
 + (instancetype)sharedPlugin
 {
     return sharedPlugin;
 }
 
-
 - (id)initWithBundle:(NSBundle *)plugin
 {
-    if (self = [super init]) {
-        
+    self = [super init];
+    
+    if (self) {
         // Reference to plugin's bundle, for resource access
-        self.bundle = plugin;
+        _bundle = plugin;
         
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addPluginsMenu) name:NSMenuDidChangeItemNotification object:nil];
-        
+        [self setupNotifications];
         [Xcode3TargetMembershipDataSource hookAllTargets];
     }
     
     return self;
 }
 
-
-- (void)addPluginsMenu
+- (void)addPluginsMenu:(NSNotification *)notifications
 {
     NSMenu *mainMenu = [NSApp mainMenu];
     if (!mainMenu) {
@@ -62,12 +63,12 @@ static AllTargets *sharedPlugin;
     }
     
     // Add Plugins menu next to Window menu
-    NSMenuItem *pluginsMenuItem = [mainMenu itemWithTitle:@"Plugins"];
+    NSMenuItem *pluginsMenuItem = [mainMenu itemWithTitle:PluginsKey];
     if (!pluginsMenuItem) {
         pluginsMenuItem = [[NSMenuItem alloc] init];
-        pluginsMenuItem.title = @"Plugins";
+        pluginsMenuItem.title = PluginsKey;
         pluginsMenuItem.submenu = [[NSMenu alloc] initWithTitle:pluginsMenuItem.title];
-        NSInteger windowIndex = [mainMenu indexOfItemWithTitle:@"Window"];
+        NSInteger windowIndex = [mainMenu indexOfItemWithTitle:WindowsKey];
         [mainMenu insertItem:pluginsMenuItem atIndex:windowIndex];
     }
     
@@ -79,9 +80,8 @@ static AllTargets *sharedPlugin;
     subMenuItem.state = NSOnState;
     [pluginsMenuItem.submenu addItem:subMenuItem];
     
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSMenuDidChangeItemNotification object:nil];
+    [self removeNotifications];
 }
-
 
 - (void)toggleMenu:(NSMenuItem *)menuItem
 {
@@ -89,6 +89,22 @@ static AllTargets *sharedPlugin;
     [Xcode3TargetMembershipDataSource hookAllTargets];
 }
 
+#pragma mark - Notifications
+
+- (void)setupNotifications
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(addPluginsMenu:)
+                                                 name:NSMenuDidChangeItemNotification
+                                               object:nil];
+}
+
+- (void)removeNotifications
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:NSMenuDidChangeItemNotification
+                                                  object:nil];
+}
 
 - (void)dealloc
 {
@@ -97,13 +113,3 @@ static AllTargets *sharedPlugin;
 
 
 @end
-
-
-
-
-
-
-
-
-
-

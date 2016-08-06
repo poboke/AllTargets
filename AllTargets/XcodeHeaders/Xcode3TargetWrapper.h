@@ -28,4 +28,3 @@
 - (id)initWithPBXTarget:(id)arg1 project:(id)arg2;
 
 @end
-
