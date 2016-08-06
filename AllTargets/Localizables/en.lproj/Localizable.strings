@@ -1,0 +1,9 @@
+/* 
+  Localizable.strings
+  AllTargets
+
+  Created by Francisco Javier Trujillo Mata on 06/08/16.
+  Copyright © 2016 Jobs. All rights reserved.
+*/
+
+"AllTargets::AutoSelectAllTargets" = "Auto Select All Targets";

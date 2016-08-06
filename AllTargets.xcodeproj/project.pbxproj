@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B541DBC01D56374B00FD5889 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B541DBC21D56374B00FD5889 /* Localizable.strings */; };
 		C5479A8C1B36FAAD007B58C2 /* Xcode3UI in Frameworks */ = {isa = PBXBuildFile; fileRef = C5479A8B1B36FAAD007B58C2 /* Xcode3UI */; };
 		C560DD4C1B36B9BF0066EE9A /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = C560DD4B1B36B9BF0066EE9A /* JRSwizzle.m */; };
 		C564DB741C4DFE0B00CF61FA /* Xcode3TargetMembershipDataSource+HookAllTargets.m in Sources */ = {isa = PBXBuildFile; fileRef = C564DB731C4DFE0B00CF61FA /* Xcode3TargetMembershipDataSource+HookAllTargets.m */; };
@@ -16,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B541DBC11D56374B00FD5889 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B57F2ADF1D567F95005B5CC5 /* LocalizableHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalizableHelper.h; sourceTree = "<group>"; };
 		C5479A8B1B36FAAD007B58C2 /* Xcode3UI */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = Xcode3UI; path = /Applications/Xcode.app/Contents/PlugIns/Xcode3UI.ideplugin/Contents/MacOS/Xcode3UI; sourceTree = "<group>"; };
 		C5482A7A1B3701BF00B41B97 /* Xcode3TargetMembershipDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Xcode3TargetMembershipDataSource.h; sourceTree = "<group>"; };
 		C54A8B491B36B70600BBDE7E /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -46,6 +49,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B541DBBD1D5636C800FD5889 /* Localizables */ = {
+			isa = PBXGroup;
+			children = (
+				B541DBC21D56374B00FD5889 /* Localizable.strings */,
+			);
+			path = Localizables;
+			sourceTree = "<group>";
+		};
 		C5479A851B36FA46007B58C2 /* Other Framewotks */ = {
 			isa = PBXGroup;
 			children = (
@@ -111,8 +122,10 @@
 		C5C02E2A1A73971C00D4CF7C /* AllTargets */ = {
 			isa = PBXGroup;
 			children = (
+				B541DBBD1D5636C800FD5889 /* Localizables */,
 				C5C02E2F1A73971C00D4CF7C /* AllTargets.h */,
 				C5C02E301A73971C00D4CF7C /* AllTargets.m */,
+				B57F2ADF1D567F95005B5CC5 /* LocalizableHelper.h */,
 				C5482A7C1B37023B00B41B97 /* HookClasses */,
 				C5482A791B3701BF00B41B97 /* XcodeHeaders */,
 				C560DD491B36B9BF0066EE9A /* JRSwizzle */,
@@ -186,6 +199,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B541DBC01D56374B00FD5889 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,6 +217,17 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		B541DBC21D56374B00FD5889 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B541DBC11D56374B00FD5889 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		C5C02E321A73971C00D4CF7C /* Debug */ = {

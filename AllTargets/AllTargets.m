@@ -8,6 +8,7 @@
 
 #import "AllTargets.h"
 #import "Xcode3TargetMembershipDataSource+HookAllTargets.h"
+#import "LocalizableHelper.h"
 
 static NSString * const BundleNameKey = @"CFBundleName";
 static NSString * const XcodeKey = @"Xcode";
@@ -74,7 +75,7 @@ static AllTargets *sharedPlugin;
     
     // Add Subitem
     NSMenuItem *subMenuItem = [[NSMenuItem alloc] init];
-    subMenuItem.title = @"Auto Select All Targets";
+    subMenuItem.title = NSPluginLocalizedString(@"AllTargets::AutoSelectAllTargets", nil);
     subMenuItem.target = self;
     subMenuItem.action = @selector(toggleMenu:);
     subMenuItem.state = NSOnState;
