@@ -6,4 +6,8 @@
   Copyright © 2016 Jobs. All rights reserved.
 */
 
-"AllTargets::AutoSelectAllTargets" = "Auto Select All Targets";
+"ATTargetMenuItem::AutoSelectTargets" = "Auto Select Targets";
+"ATTargetMenuItem::AllTargets" = "All Targets";
+"ATTargetMenuItem::AppTargets" = "Application Targets";
+"ATTargetMenuItem::ExtensionTargets" = "Extension Targets";
+"ATTargetMenuItem::TestTargets" = "Extension Targets";

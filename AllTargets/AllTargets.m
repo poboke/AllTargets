@@ -8,7 +8,7 @@
 
 #import "AllTargets.h"
 #import "Xcode3TargetMembershipDataSource+HookAllTargets.h"
-#import "LocalizableHelper.h"
+#import "ATMenuItem.h"
 
 static NSString * const BundleNameKey = @"CFBundleName";
 static NSString * const XcodeKey = @"Xcode";
@@ -58,36 +58,24 @@ static AllTargets *sharedPlugin;
 
 - (void)addPluginsMenu:(NSNotification *)notifications
 {
-    NSMenu *mainMenu = [NSApp mainMenu];
-    if (!mainMenu) {
+    NSMenu *appMenu = [NSApp mainMenu];
+    if (!appMenu) {
         return;
     }
     
+    [self removeNotifications];
+    
     // Add Plugins menu next to Window menu
-    NSMenuItem *pluginsMenuItem = [mainMenu itemWithTitle:PluginsKey];
+    NSMenuItem *pluginsMenuItem = [appMenu itemWithTitle:PluginsKey];
     if (!pluginsMenuItem) {
         pluginsMenuItem = [[NSMenuItem alloc] init];
         pluginsMenuItem.title = PluginsKey;
         pluginsMenuItem.submenu = [[NSMenu alloc] initWithTitle:pluginsMenuItem.title];
-        NSInteger windowIndex = [mainMenu indexOfItemWithTitle:WindowsKey];
-        [mainMenu insertItem:pluginsMenuItem atIndex:windowIndex];
+        NSInteger windowIndex = [appMenu indexOfItemWithTitle:WindowsKey];
+        [appMenu insertItem:pluginsMenuItem atIndex:windowIndex];
     }
     
-    // Add Subitem
-    NSMenuItem *subMenuItem = [[NSMenuItem alloc] init];
-    subMenuItem.title = NSPluginLocalizedString(@"AllTargets::AutoSelectAllTargets", nil);
-    subMenuItem.target = self;
-    subMenuItem.action = @selector(toggleMenu:);
-    subMenuItem.state = NSOnState;
-    [pluginsMenuItem.submenu addItem:subMenuItem];
-    
-    [self removeNotifications];
-}
-
-- (void)toggleMenu:(NSMenuItem *)menuItem
-{
-    menuItem.state = !menuItem.state;
-    [Xcode3TargetMembershipDataSource hookAllTargets];
+    [pluginsMenuItem.submenu addItem:[[ATTargetMenuItem alloc] init]];
 }
 
 #pragma mark - Notifications
@@ -111,6 +99,5 @@ static AllTargets *sharedPlugin;
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-
 
 @end
