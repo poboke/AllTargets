@@ -10,4 +10,4 @@
 "ATTargetMenuItem::AllTargets" = "All Targets";
 "ATTargetMenuItem::AppTargets" = "Application Targets";
 "ATTargetMenuItem::ExtensionTargets" = "Extension Targets";
-"ATTargetMenuItem::TestTargets" = "Extension Targets";
+"ATTargetMenuItem::TestTargets" = "Test Targets";

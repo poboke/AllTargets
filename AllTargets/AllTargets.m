@@ -75,7 +75,7 @@ static AllTargets *sharedPlugin;
         [appMenu insertItem:pluginsMenuItem atIndex:windowIndex];
     }
     
-    [pluginsMenuItem.submenu addItem:[[ATTargetMenuItem alloc] init]];
+    [pluginsMenuItem.submenu addItem:[[ATMenuItem alloc] init]];
 }
 
 #pragma mark - Notifications
