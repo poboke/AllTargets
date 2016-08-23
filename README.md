@@ -1,14 +1,16 @@
 
 # AllTargets
-  AllTargets is a plugin for Xcode. The plugin intends to auto select all targets when you add files to the project.
-
+  AllTargets is a plugin for Xcode. The plugin intends to auto select targets depending of the selected configuration when you add files to the project.
+  
+  ![image](https://github.com/fjtrujy/AllTargets/raw/master/Screenshots/mainMenu.png)
   ![image](https://github.com/poboke/AllTargets/raw/master/Screenshots/about.png)
 
-  If sometimes you want to add files to one target, you can click the Xcode menu "Plugins", and click the "Auto Select All Targets" sub menu to select/deselect all targets.
+  If sometimes you want to add files to a specif target, you can click the Xcode menu "Plugins", then to "Auto Select Targets" sub menu and then select/deselect all options.
 
 ## Support Xcode Versions
   - Xcode5
   - Xcode6
+  - Xcode7
 
 ## Install
   - Using [Alcatraz](https://github.com/mneorr/Alcatraz)
@@ -33,9 +35,9 @@
 	(The WTFPL)
 	
 	            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
-	                    Version 2, December 2004
+	                    Version 3, August 2016
 	
-	 Copyright (C) 2015 Jobs (www.poboke.com)
+	 Copyright (C) 2016 Jobs (www.poboke.com) & Fjtrujy (https://github.com/fjtrujy)
 	
 	 Everyone is permitted to copy and distribute verbatim or modified
 	 copies of this license document, and changing it is allowed as long
