@@ -9,6 +9,7 @@
 #import "AllTargets.h"
 #import "Xcode3TargetMembershipDataSource+HookAllTargets.h"
 #import "ATMenuItem.h"
+#import "ATSavedData.h"
 
 static NSString * const BundleNameKey = @"CFBundleName";
 static NSString * const XcodeKey = @"Xcode";
@@ -17,9 +18,7 @@ static NSString * const WindowsKey = @"Window";
 
 static AllTargets *sharedPlugin;
 
-@interface AllTargets() <NSTableViewDelegate>
-
-@property (nonatomic, strong, readwrite) NSBundle *bundle;
+@interface AllTargets() <NSTableViewDelegate, ATMenuItemDelegate>
 
 @end
 
@@ -75,7 +74,38 @@ static AllTargets *sharedPlugin;
         [appMenu insertItem:pluginsMenuItem atIndex:windowIndex];
     }
     
-    [pluginsMenuItem.submenu addItem:[[ATMenuItem alloc] init]];
+    ATMenuItem *menuItem = [[ATMenuItem alloc] initWithSavedData:self.savedData];
+    menuItem.delegate = self;
+    [pluginsMenuItem.submenu addItem:menuItem];
+}
+
+#pragma mark - Saved Data methods
+
+- (ATSavedData *)savedData
+{
+    ATSavedData *savedData;
+    NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:NSStringFromClass([ATSavedData class])];
+    if (data) {
+        savedData = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    } else {
+        savedData = [[ATSavedData alloc] init];
+    }
+    
+    return savedData;
+}
+
+- (void)setSavedData:(ATSavedData *)savedData
+{
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:savedData];
+    [[NSUserDefaults standardUserDefaults] setObject:data forKey:NSStringFromClass([ATSavedData class])];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+#pragma mark - ATMenuItemDelegate
+
+- (void)menuItem:(ATMenuItem *)menuItem didUpdateSavedData:(ATSavedData *)savedData
+{
+    self.savedData = savedData;
 }
 
 #pragma mark - Notifications

@@ -8,9 +8,13 @@
 
 #import <AppKit/AppKit.h>
 
+@class ATSavedData;
+
 @interface AllTargets : NSObject
 
 + (instancetype)sharedPlugin;
 
-@property (nonatomic, strong, readonly) NSBundle* bundle;
+@property (nonatomic, strong, readonly) NSBundle *bundle;
+@property (nonatomic, strong, readonly) ATSavedData *savedData;
+
 @end

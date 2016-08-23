@@ -8,6 +8,20 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class ATSavedData;
+
+@protocol ATMenuItemDelegate;
+
 @interface ATMenuItem : NSMenuItem
+
+@property (nonatomic, weak) id<ATMenuItemDelegate> delegate;
+
+- (instancetype)initWithSavedData:(ATSavedData *)savedData;
+
+@end
+
+@protocol ATMenuItemDelegate <NSObject>
+
+- (void)menuItem:(ATMenuItem *)menuItem didUpdateSavedData:(ATSavedData *)savedData;
 
 @end
