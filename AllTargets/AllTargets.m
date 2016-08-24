@@ -8,102 +8,126 @@
 
 #import "AllTargets.h"
 #import "Xcode3TargetMembershipDataSource+HookAllTargets.h"
+#import "ATMenuItem.h"
+#import "ATSavedData.h"
+
+static NSString * const BundleNameKey = @"CFBundleName";
+static NSString * const XcodeKey = @"Xcode";
+static NSString * const PluginsKey = @"Plugins";
+static NSString * const WindowsKey = @"Window";
 
 static AllTargets *sharedPlugin;
 
-@interface AllTargets() <NSTableViewDelegate>
-
-@property (nonatomic, strong, readwrite) NSBundle *bundle;
+@interface AllTargets() <NSTableViewDelegate, ATMenuItemDelegate>
 
 @end
-
 
 @implementation AllTargets
 
 + (void)pluginDidLoad:(NSBundle *)plugin
 {
     static dispatch_once_t onceToken;
-    NSString *currentApplicationName = [[NSBundle mainBundle] infoDictionary][@"CFBundleName"];
-    if ([currentApplicationName isEqual:@"Xcode"]) {
+    NSString *currentApplicationName = [[NSBundle mainBundle] infoDictionary][BundleNameKey];
+    if ([currentApplicationName isEqualToString:XcodeKey]) {
         dispatch_once(&onceToken, ^{
             sharedPlugin = [[self alloc] initWithBundle:plugin];
         });
     }
 }
 
-
 + (instancetype)sharedPlugin
 {
     return sharedPlugin;
 }
 
-
 - (id)initWithBundle:(NSBundle *)plugin
 {
-    if (self = [super init]) {
-        
+    self = [super init];
+    
+    if (self) {
         // Reference to plugin's bundle, for resource access
-        self.bundle = plugin;
+        _bundle = plugin;
         
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addPluginsMenu) name:NSMenuDidChangeItemNotification object:nil];
-        
+        [self setupNotifications];
         [Xcode3TargetMembershipDataSource hookAllTargets];
     }
     
     return self;
 }
 
-
-- (void)addPluginsMenu
+- (void)addPluginsMenu:(NSNotification *)notifications
 {
-    NSMenu *mainMenu = [NSApp mainMenu];
-    if (!mainMenu) {
+    NSMenu *appMenu = [NSApp mainMenu];
+    if (!appMenu) {
         return;
     }
     
+    [self removeNotifications];
+    
     // Add Plugins menu next to Window menu
-    NSMenuItem *pluginsMenuItem = [mainMenu itemWithTitle:@"Plugins"];
+    NSMenuItem *pluginsMenuItem = [appMenu itemWithTitle:PluginsKey];
     if (!pluginsMenuItem) {
         pluginsMenuItem = [[NSMenuItem alloc] init];
-        pluginsMenuItem.title = @"Plugins";
+        pluginsMenuItem.title = PluginsKey;
         pluginsMenuItem.submenu = [[NSMenu alloc] initWithTitle:pluginsMenuItem.title];
-        NSInteger windowIndex = [mainMenu indexOfItemWithTitle:@"Window"];
-        [mainMenu insertItem:pluginsMenuItem atIndex:windowIndex];
+        NSInteger windowIndex = [appMenu indexOfItemWithTitle:WindowsKey];
+        [appMenu insertItem:pluginsMenuItem atIndex:windowIndex];
     }
     
-    // Add Subitem
-    NSMenuItem *subMenuItem = [[NSMenuItem alloc] init];
-    subMenuItem.title = @"Auto Select All Targets";
-    subMenuItem.target = self;
-    subMenuItem.action = @selector(toggleMenu:);
-    subMenuItem.state = NSOnState;
-    [pluginsMenuItem.submenu addItem:subMenuItem];
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSMenuDidChangeItemNotification object:nil];
+    ATMenuItem *menuItem = [[ATMenuItem alloc] initWithSavedData:self.savedData];
+    menuItem.delegate = self;
+    [pluginsMenuItem.submenu addItem:menuItem];
 }
 
+#pragma mark - Saved Data methods
 
-- (void)toggleMenu:(NSMenuItem *)menuItem
+- (ATSavedData *)savedData
 {
-    menuItem.state = !menuItem.state;
-    [Xcode3TargetMembershipDataSource hookAllTargets];
+    ATSavedData *savedData;
+    NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:NSStringFromClass([ATSavedData class])];
+    if (data) {
+        savedData = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    } else {
+        savedData = [[ATSavedData alloc] init];
+    }
+    
+    return savedData;
 }
 
+- (void)setSavedData:(ATSavedData *)savedData
+{
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:savedData];
+    [[NSUserDefaults standardUserDefaults] setObject:data forKey:NSStringFromClass([ATSavedData class])];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+#pragma mark - ATMenuItemDelegate
+
+- (void)menuItem:(ATMenuItem *)menuItem didUpdateSavedData:(ATSavedData *)savedData
+{
+    self.savedData = savedData;
+}
+
+#pragma mark - Notifications
+
+- (void)setupNotifications
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(addPluginsMenu:)
+                                                 name:NSMenuDidChangeItemNotification
+                                               object:nil];
+}
+
+- (void)removeNotifications
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:NSMenuDidChangeItemNotification
+                                                  object:nil];
+}
 
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-
 @end
-
-
-
-
-
-
-
-
-
-

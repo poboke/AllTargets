@@ -54,4 +54,3 @@
 @property(readonly) Class superclass;
 
 @end
-
