@@ -11,12 +11,15 @@
 #import "AllTargets.h"
 #import "ATSavedData.h"
 
-static NSString * const WrappedTargetsKey = @"wrappedTargets";
-static NSString * const ProductTypeKey = @"productType";
+static NSString * const WrappedTargetsKey        = @"wrappedTargets";
+static NSString * const ProductTypeKey           = @"productType";
 
-static NSString * const ProductAppBundleKey = @"PBXApplicationProductType";
-static NSString * const ProductExtensionBundleKey = @"PBXBundleProductType";
-static NSString * const ProductTestBundleKey = @"PBXXCTestBundleProductType";
+static NSString * const ProductApplicationKey    = @"PBXApplicationProductType";
+static NSString * const ProductTestBundleKey     = @"PBXXCTestBundleProductType";
+static NSString * const ProductBundleKey         = @"PBXBundleProductType";
+static NSString * const ProductFrameworkKey      = @"PBXFrameworkProductType";
+static NSString * const ProductStaticLibraryKey  = @"PBXStaticLibraryProductType";
+static NSString * const ProductDynamicLibraryKey = @"PBXDynamicLibraryProductType";
 
 @implementation Xcode3TargetMembershipDataSource (HookAllTargets)
 
@@ -46,9 +49,9 @@ static NSString * const ProductTestBundleKey = @"PBXXCTestBundleProductType";
             id productType = [pbxTarget valueForKey:ProductTypeKey];
             NSString *className = NSStringFromClass([productType class]);
             
-            if ([className isEqualToString:ProductAppBundleKey]) {
+            if ([className isEqualToString:ProductApplicationKey]) {
                 targetWrapper.selected = savedData.allAppsSelected;
-            } else if ([className isEqualToString:ProductExtensionBundleKey]) {
+            } else if ([self.extensionKeys containsObject:className]) {
                 targetWrapper.selected = savedData.allExtensionsSelected;
             } else if ([className isEqualToString:ProductTestBundleKey]) {
                 targetWrapper.selected = savedData.allTestsSelected;
@@ -58,6 +61,16 @@ static NSString * const ProductTestBundleKey = @"PBXXCTestBundleProductType";
             
         }
     }
+}
+
+- (NSArray *)extensionKeys
+{
+    return @[
+        ProductBundleKey,
+        ProductFrameworkKey,
+        ProductStaticLibraryKey,
+        ProductDynamicLibraryKey,
+    ];
 }
 
 @end
